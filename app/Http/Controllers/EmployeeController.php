@@ -101,7 +101,7 @@ class EmployeeController extends Controller
         $employee->roles()->sync($selectedRoles);
         
         $permissions = $employee->roles->pluck('permissions.*.id')->flatten()->unique();
-        
+
         $employee->permissions()->sync($permissions);
 
         return redirect('employee');

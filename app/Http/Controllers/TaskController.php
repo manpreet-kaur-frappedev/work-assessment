@@ -105,4 +105,22 @@ class TaskController extends Controller
 
         return redirect('/');
     }
+
+    public function comments($taskId)
+    {
+        $task = Task::find($taskId);
+
+        $comments = TaskComment::where('task_id', $taskId)->get();
+
+        return view('tasks.comments', ['task' => $task, 'comments' => $comments]);
+    }
+
+    public function uploadedFiles($taskId)
+    {
+        $task = Task::find($taskId);
+
+        $files = UploadedFile::where('task_id', $taskId)->get();
+
+        return view('tasks.files', ['task' => $task, 'files' => $files]);
+    }
 }

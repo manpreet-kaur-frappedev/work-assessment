@@ -22,6 +22,7 @@
                                         <th>Assignee</th>
                                         <th>Assigned To</th>
                                         <th>Status</th>
+                                        <th>Settings</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,6 +44,10 @@
                                             @elseif($task->status == 'discard')
                                                 <span class="p-2 badge badge-primary">Discard</span>
                                             @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('tasks.comments', $task->id) }}" class="btn bg-success">Check Comments</a>
+                                            <a href="{{ route('tasks.uploadedFiles', $task->id) }}" class="btn bg-info">Upload Files</a>
                                         </td>
                                     </tr>
                                     @endforeach
