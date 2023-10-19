@@ -9,10 +9,10 @@ AdminLTE theme for Admin
 [x] Admin can login / register
 [x] Can Manage employees / Have multiple Roles
 [x] Role Management
-[] Assign task based on Roles (Pending)
+[] Assign task based on Roles (Leaving it)
 [x] Admin can add Todo task (having fields Title, Description, Assignee, Assign to, Deadline, status etc)
-[x] Upload docs to task (can't verify)
-[] Check task status and comments (Coming)
+[x] Upload docs to task (to be fixed)
+[] Check task status and comments (allow to admin to add comments)
 [x] Can see all employees / CRUD
 [] Notifications (Coming)
 

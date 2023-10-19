@@ -14,6 +14,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable, CheckRolesPermission;
 
     const EMPLOYEE = 'employee';
+    const ADMIN = 'admin';
 
     const TYPES = [
         'admin' => 'Admin',
@@ -62,8 +63,8 @@ class User extends Authenticatable
         return $this->hasMany(Notification::class, 'user_id')->whereNull('read_at');
     }
 
-    public function getUserType()
+    public function isAdmin()
     {
-        return self::TYPES[$this->type];
+        return $this->type == self::ADMIN;
     }
 }

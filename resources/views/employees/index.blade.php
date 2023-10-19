@@ -19,7 +19,6 @@
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Roles</th>
-                                        <th>Permissions</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -33,13 +32,6 @@
                                             @foreach($employee->roles as $role)
                                                 <span class="badge badge-secondary">
                                                     {{ $role->name }}
-                                                </span>
-                                            @endforeach
-                                        </td>
-                                        <td>
-                                            @foreach($employee->permissions as $permission)
-                                                <span class="badge badge-secondary">
-                                                    {{ $permission->name }}
                                                 </span>
                                             @endforeach
                                         </td>

@@ -12,8 +12,16 @@ trait CheckRolesPermission
 		return $this->belongsToMany(Role::class, 'users_roles');
 	}
 
-	public function permissions()
+	public function getPermissions()
 	{
-		return $this->belongsToMany(Permission::class, 'users_permissions');
+		$permissions = [];
+		foreach($this->roles as $role) {
+			foreach($role->permissions as $permission) {
+				$permissions[] = $permission;
+			}
+		}
+
+		return collect($permissions);
+		// return $this->hasManyThrough(Permission::class, Role::class);
 	}
 }

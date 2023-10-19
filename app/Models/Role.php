@@ -9,6 +9,8 @@ class Role extends Model
 {
     use HasFactory;
 
+    const ADMIN = 1;
+
     public function permissions()
     {
         return $this->belongsToMany(Permission::class, 'roles_permissions');

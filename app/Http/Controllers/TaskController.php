@@ -13,6 +13,11 @@ use Auth;
 
 class TaskController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Task::class);
+    }
+
     public function index()
     {
         $tasks = Task::orderBy('id', 'desc')->get();
@@ -60,6 +65,7 @@ class TaskController extends Controller
 
     public function status($id, $type)
     {
+        // $this->authorize('update', )
         $task = Task::find($id);
 
         $task->status = $type;
