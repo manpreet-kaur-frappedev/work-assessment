@@ -85,43 +85,24 @@ class EmployeeController extends Controller
     {
         $employee = User::find($id);
 
-        $data = [];
-        if(!empty($request->name)) {
-            $data['name'] = $request->name;
-        }
-        if(!empty($request->email)) {
-            $data['email'] = $request->email;
-        }
+        $data = [
+            'name' => $request->input('name', $employee->name),
+            'email' => $request->input('email', $employee->email),
+        ];
+
         if(!empty($request->password)) {
             $data['password'] = $request->password;
         }
 
-        $employee->fill($data)->save();
+        $employee->update($data);
 
         $selectedRoles = $request->input('selected_roles', []);
-
-        if(count($selectedRoles) > 0) {
-            $employee->roles()->detach();
-            $employee->permissions()->detach();
-        }
-
-        foreach ($selectedRoles as $key => $role) {
-            $employee->roles()->attach($role);
-        }
-
-        if(count($selectedRoles) > 0) {
-            $permissions = [];
-            foreach ($employee->roles as $role) {
-                $permissions = array_merge($permissions, $role->permissions->pluck('id')->toArray());
-            }
-
-            // now remove the duplicate records from array
-            $allPermissions = array_unique($permissions);
-
-            foreach ($allPermissions as $key => $permission) {
-                $employee->permissions()->attach($permission);
-            }
-        }
+        
+        $employee->roles()->sync($selectedRoles);
+        
+        $permissions = $employee->roles->pluck('permissions.*.id')->flatten()->unique();
+        
+        $employee->permissions()->sync($permissions);
 
         return redirect('employee');
     }
