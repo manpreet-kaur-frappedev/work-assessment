@@ -41,4 +41,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/notifications/clearAll', [NotificationController::class, 'clearAll'])->name('notification.clearAll');
 	Route::get('/dashboard/index', [DashboardController::class, 'index'])->name('dashboard.index');
 	Route::resource('roles', RolesController::class);
+	Route::get('/tasks/comments/{id}', [TaskController::class, 'comments'])->name('tasks.comments');
+	Route::get('/tasks/uploadedFiles/{id}', [TaskController::class, 'uploadedFiles'])->name('tasks.uploadedFiles');
+	Route::post('/notifications/applyNotification', [NotificationController::class, 'applyNotification'])->name('notifications.applyNotification');
 });

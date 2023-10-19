@@ -17,4 +17,17 @@ class NotificationController extends Controller
         
         return back();
     }
+
+    public function applyNotification(Request $request)
+    {
+        $employeeId = $request->input('employee_id');
+        $content = $request->input('content');
+
+        Notification::create([
+            'user_id' => $employeeId,
+            'content' => $content
+        ]);
+
+        return response()->json(['message' => 'Notification sent successfully!']);
+    }
 }
