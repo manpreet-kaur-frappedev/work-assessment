@@ -27,7 +27,9 @@ class TaskController extends Controller
             $tasks->whereAssignTo(Auth::user()->id);
         }
 
-        return view('tasks/index', ['tasks' => $tasks->get()]);
+        $employees = User::where('type', User::EMPLOYEE)->orderBy('id', 'desc')->get();
+
+        return view('tasks/index', ['tasks' => $tasks->get(), 'employees' => $employees]);
     }
 
     /**
@@ -181,5 +183,16 @@ class TaskController extends Controller
         $uploadedFiles = UploadedFile::create($data);
 
         return back();
+    }
+
+    public function assignedTo(Request $request, $id)
+    {
+        $taskId = $request->task_id;
+
+        $task = Task::find($taskId);
+        $task->assign_to = $id;
+        $task->save();
+
+        return response()->json(['success' => true, 'message' => 'Task assigned successfully!']);
     }
 }

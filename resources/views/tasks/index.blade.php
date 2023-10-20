@@ -33,7 +33,13 @@
                                         <td>{{$task->description}}</td>
                                         <td>{{$task->deadline}}</td>
                                         <td>{{$task->assigneBy ? $task->assigneBy->name : ''}}</td>
-                                        <td>{{$task->assignTo ? $task->assignTo->name : ''}}</td>
+                                        <td>
+                                            <select class="form-control" id="employeeSelect" onchange="updateAssigne(this, {{$task->id}})">
+                                                @foreach($employees as $employee)
+                                                    <option @if($task->assignTo->id == $employee->id) selected @endif value="{{ $employee->id }}">{{ $employee->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </td>
                                         <td>
                                             @if($task->status == 'inactive')
                                                 <span class="p-2 badge badge-light">Inactive</span>
@@ -75,3 +81,26 @@
     </section>
 </div>
 @endsection
+
+<script>
+    function updateAssigne(selectElement, taskId) {
+        const employeeId = selectElement.value;
+
+        if (employeeId) {
+            $.ajax({
+                url: '{{ route('tasks.assignedTo', '') }}/' + employeeId,
+                method: 'POST',
+                data: {
+                    '_token': '{{ csrf_token() }}',
+                    'task_id': taskId,
+                },
+                success: function(data) {
+                    console.log(data);
+                },
+                error: function(err) {
+                    console.error(err);
+                }
+            });
+        }
+    }
+</script>

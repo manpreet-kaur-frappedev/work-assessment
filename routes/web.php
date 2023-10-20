@@ -46,4 +46,5 @@ Route::middleware(['auth'])->group(function () {
 	Route::post('/notifications/applyNotification', [NotificationController::class, 'applyNotification'])->name('notifications.applyNotification');
 	Route::post('/tasks/addComment/{id}', [TaskController::class, 'addComment'])->name('tasks.addComment');
 	Route::post('/tasks/uploadFile/{id}', [TaskController::class, 'uploadFile'])->name('tasks.uploadFile');
+	Route::post('/tasks/assignedTo/{id}', [TaskController::class, 'assignedTo'])->name('tasks.assignedTo');
 });
