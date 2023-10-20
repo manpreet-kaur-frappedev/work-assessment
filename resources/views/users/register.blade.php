@@ -21,7 +21,7 @@
             <div class="card">
                 <div class="card-body register-card-body">
                     <p class="login-box-msg">Register</p>
-                    <form action="{{ route('user.createUser') }}" method="post">
+                    <form action="{{ route('auth.createAdmin') }}" method="post">
                         @csrf
                         <div class="mb-3">
                             <div class="input-group">
@@ -62,23 +62,14 @@
                                 <span class="text-danger text-left">{{ $errors->first('password') }}</span>
                             @endif
                         </div>
-                        <div class="input-group mb-3">
-                            <select class="form-control" name="type">
-                                <option value="admin">Admin</option>
-                                <option value="employee">Employee</option>
-                            </select>
-                        </div>
                         <div class="row">
-                            <div class="col-8">
-                                <div class="col-8">
-                                    <a href="{{ route('user.login') }}">Login</a>
-                                </div>
-                            </div>
-                            <!-- /.col -->
                             <div class="col-4">
                                 <button type="submit" class="btn btn-primary btn-block">Register</button>
                             </div>
-                            <!-- /.col -->
+                            <div class="col-8 text-right">
+                                <a href="{{ route('auth.login') }}">Login</a> /
+                                <a href="{{ route('auth.register.employee') }}">Register as Employee</a>
+                            </div>
                         </div>
                     </form>
                 </div>

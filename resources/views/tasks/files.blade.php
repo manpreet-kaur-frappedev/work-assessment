@@ -14,13 +14,13 @@
                         <h3>{{ $task->description }}</h3>
                         @foreach($files as $file)
                         <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-12">
                                 <div class="row mt-3 border p-2">
                                     <div class="col-sm-9">
                                         <a href="{{ asset('files/' . $file->filename) }}" download>{{$file->filename}}</a>
                                     </div>
                                     <div class="col-sm-3 text-right">
-                                        {{$file->created_at}}
+                                        {{$file->created_at}} by <span class="text-primary">{{$file->user->name}}</span>
                                     </div>
                                 </div>
                             </div>

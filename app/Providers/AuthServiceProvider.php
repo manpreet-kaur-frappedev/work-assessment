@@ -82,6 +82,7 @@ class AuthServiceProvider extends ServiceProvider
 
 
         Gate::define('task-assign', function (User $user, Task $task) {
+            
             if($user->isAdmin()) {
                 return true;
             }
@@ -90,6 +91,7 @@ class AuthServiceProvider extends ServiceProvider
             
             // first check if the user has task status changing permission
             $hasTaskAssignPermission = $permissions->where('slug', 'task-assign')->count() > 0;
+
 
             if($hasTaskAssignPermission && $task) {
                 return $task->assign_to == $user->id;

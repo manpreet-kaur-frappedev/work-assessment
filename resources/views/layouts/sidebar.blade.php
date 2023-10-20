@@ -28,35 +28,6 @@
                         </p>
                     </a>
                 </li>
-                @canany(['viewAny', 'create'], \App\Models\User::class)
-                <li class="nav-item {{in_array(Route::currentRouteName(), ['employee.index', 'employee.create']) ? 'menu-open': '' }}">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-chart-pie"></i>
-                        <p>
-                            Employees
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        @can('viewAny', \App\Models\User::class)
-                        <li class="nav-item">
-                            <a href="{{ route('employee.index') }}" class="nav-link {{ Route::currentRouteName() == 'employee.index' ? 'active': '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Listing</p>
-                            </a>
-                        </li>
-                        @endcan
-                        @can('create', \App\Models\User::class)
-                        <li class="nav-item">
-                            <a href="{{ route('employee.create') }}" class="nav-link {{ Route::currentRouteName() == 'employee.create' ? 'active': '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Create</p>
-                            </a>
-                        </li>
-                        @endcan
-                    </ul>
-                </li>
-                @endcanany
 
                 @canany(['viewAny', 'create'], \App\Models\Role::class)
                 <li class="nav-item {{in_array(Route::currentRouteName(), ['roles.index', 'roles.create']) ? 'menu-open': '' }}">
@@ -79,6 +50,36 @@
                         @can('create', \App\Models\Role::class)
                         <li class="nav-item">
                             <a href="{{ route('roles.create') }}" class="nav-link {{ Route::currentRouteName() == 'roles.create' ? 'active': '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Create</p>
+                            </a>
+                        </li>
+                        @endcan
+                    </ul>
+                </li>
+                @endcanany
+                
+                @canany(['viewAny', 'create'], \App\Models\User::class)
+                <li class="nav-item {{in_array(Route::currentRouteName(), ['users.index', 'users.create']) ? 'menu-open': '' }}">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <p>
+                            Employees
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @can('viewAny', \App\Models\User::class)
+                        <li class="nav-item">
+                            <a href="{{ route('users.index') }}" class="nav-link {{ Route::currentRouteName() == 'users.index' ? 'active': '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Listing</p>
+                            </a>
+                        </li>
+                        @endcan
+                        @can('create', \App\Models\User::class)
+                        <li class="nav-item">
+                            <a href="{{ route('users.create') }}" class="nav-link {{ Route::currentRouteName() == 'users.create' ? 'active': '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Create</p>
                             </a>

@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Models\Task;
 use App\Models\User;
 
 class UserPolicy
@@ -45,7 +44,7 @@ class UserPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Task $employee): bool
+    public function update(User $user, User $employee): bool
     {
         $permissions = $user->getPermissions();
         return $permissions->where('slug', 'employee-update')->count() > 0;
@@ -58,21 +57,5 @@ class UserPolicy
     {
         $permissions = $user->getPermissions();
         return $permissions->where('slug', 'employee-delete')->count() > 0;
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     */
-    public function restore(User $user, Task $task): bool
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, Task $task): bool
-    {
-        //
     }
 }

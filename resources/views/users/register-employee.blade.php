@@ -13,20 +13,29 @@
         <!-- overlayScrollbars -->
         <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
     </head>
-    <body class="hold-transition login-page">
-        <div class="login-box">
-            <div class="login-logo">
+    <body class="hold-transition register-page">
+        <div class="register-box">
+            <div class="register-logo">
                 <a href="../../index2.html"><b>Admin</b>LTE</a>
             </div>
-            @if($error = \Session::get('error'))
-                <div class="alert alert-danger">{{$error}}</div>
-            @endif
-            <!-- /.login-logo -->
             <div class="card">
-                <div class="card-body login-card-body">
-                    <p class="login-box-msg">Sign in</p>
-                    <form action="{{ route('auth.loginUser') }}" method="post">
+                <div class="card-body register-card-body">
+                    <p class="login-box-msg">Register as Employee</p>
+                    <form action="{{ route('auth.createEmployee') }}" method="post">
                         @csrf
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Full name" name="name">
+                                <div class="input-group-append">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-user"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            @if ($errors->has('name'))
+                                <span class="text-danger text-left">{{ $errors->first('name') }}</span>
+                            @endif
+                        </div>
                         <div class="mb-3">
                             <div class="input-group">
                                 <input type="email" class="form-control" placeholder="Email" name="email">
@@ -55,18 +64,21 @@
                         </div>
                         <div class="row">
                             <div class="col-4">
-                                <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                                <button type="submit" class="btn btn-primary btn-block">Register</button>
                             </div>
 
                             <div class="col-8 text-right">
-                            	<a href="{{ route('auth.register.admin') }}">Register</a>
+                                <a href="{{ route('auth.login') }}">Login</a> /
+                                <a href="{{ route('auth.register.admin') }}">Register as Admin</a>
                             </div>
                         </div>
                     </form>
                 </div>
-                <!-- /.login-card-body -->
+                <!-- /.form-box -->
             </div>
+            <!-- /.card -->
         </div>
+        <!-- /.register-box -->
         <!-- /.login-box -->
         <!-- Bootstrap 4 -->
         <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>

@@ -36,7 +36,7 @@
                                             @endforeach
                                         </td>
                                         <td>
-                                            <a class="p-2" href="{{ route('employee.edit', $employee->id) }}"><i class="fa fa-edit"></i></a>
+                                            <a class="p-2" href="{{ route('users.edit', $employee->id) }}"><i class="fa fa-edit"></i></a>
                                             <a class="p-2" href="#" onclick="deleteEmployee({{ $employee->id }})"><i class="fas fa-trash-alt"></i></a>
                                             <a class="p-2" href="#" onclick="createNotificationForEmployee({{ $employee->id }})"><i class="fa fa-bell"></i></a>
                                         </td>
@@ -110,7 +110,7 @@
         if (confirm('Are you sure you want to delete this employee?')) {
             $.ajax({
                 type: 'DELETE',
-                url: '{{ route('employee.destroy', ['employee' => $employee->id]) }}',
+                url: "{{ route('users.destroy', '') }}/" + employeeId,
                 data: {
                     '_token': '{{ csrf_token() }}'
                 },
@@ -120,7 +120,7 @@
                     location.reload();
                 },
                 error: function (data) {
-                    // Handle errors or show a message to the user.
+                    // Handle errors or show a message to the users.
                     console.error('An error occurred:', data);
                 }
             });

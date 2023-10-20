@@ -185,12 +185,18 @@ class TaskController extends Controller
         return back();
     }
 
-    public function assignedTo(Request $request, $id)
+    public function assignedTo(Request $request)
     {
         $taskId = $request->task_id;
-
-        $task = Task::find($taskId);
-        $task->assign_to = $id;
+        $userId = $request->user_id;
+        
+        $task = Task::findOrFail($taskId);
+        
+        if (!Gate::allows('task-assign', $task)) {
+            abort(403);
+        }
+        
+        $task->assign_to = $userId;
         $task->save();
 
         return response()->json(['success' => true, 'message' => 'Task assigned successfully!']);

@@ -26,4 +26,9 @@ class UploadedFile extends Model
         $carbonDate = Carbon::parse($value);
         return $carbonDate->diffForHumans();
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

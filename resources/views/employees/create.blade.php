@@ -10,7 +10,7 @@
                 <div class="main-card mb-3 card">
                     <div class="card-body">
                         <h3 class="card-titles">Create Employee</h3>
-                        <form action="{{ route('employee.store') }}" id="create_emp" method="post">
+                        <form action="{{ route('users.store') }}" id="create_emp" method="post">
                         	@csrf
                             <div class="position-relative form-group">
                                 <label for="exampleEmail" class="">Name</label>
@@ -55,7 +55,6 @@
                                     @endforeach
                                 </div>
                             </div>
-                            <input type="hidden" value="employee" name="type">
                             <button type="submit" class="mt-1 btn btn-primary">Create</button>
                         </form>
                     </div>

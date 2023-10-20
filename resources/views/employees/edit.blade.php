@@ -10,7 +10,7 @@
                 <div class="main-card mb-3 card">
                     <div class="card-body">
                         <h3 class="card-titles">Update Employee ({{$employee->name}})</h3>
-                        <form action="{{ route('employee.update', $employee->id) }}" id="create_emp" method="post">
+                        <form action="{{ route('users.update', $employee->id) }}" id="create_emp" method="post">
                         	@csrf
                             @method('PUT')
                             <div class="position-relative form-group">

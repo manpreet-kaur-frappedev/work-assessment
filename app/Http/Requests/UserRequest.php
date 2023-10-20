@@ -26,7 +26,6 @@ class UserRequest extends FormRequest
             'email' => 'required|email:rfc,dns|unique:users,email',
             'name' => 'required',
             'password' => 'required|min:8',
-            'type' => ['required', Rule::in(['admin', 'employee'])]
         ];
     }
 }

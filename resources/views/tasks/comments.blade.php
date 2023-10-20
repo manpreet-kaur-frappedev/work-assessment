@@ -18,7 +18,8 @@
                                 {{$comment->comment}}
                             </div>
                             <div class="col-sm-3 text-right">
-                                {{$comment->created_at}}
+                                {{$comment->created_at}} by
+                                <span class='text-primary'>{{$comment->user->name}}</span>
                             </div>
                         </div>
                         @endforeach

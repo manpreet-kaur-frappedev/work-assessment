@@ -34,11 +34,16 @@
                                         <td>{{$task->deadline}}</td>
                                         <td>{{$task->assigneBy ? $task->assigneBy->name : ''}}</td>
                                         <td>
-                                            <select class="form-control" id="employeeSelect" onchange="updateAssigne(this, {{$task->id}})">
+                                            @can('task-assign', $task)
+                                            <select class="form-control" id="employeeSelect" onchange="changeAssignee(this, {{$task->id}})">
                                                 @foreach($employees as $employee)
                                                     <option @if($task->assignTo->id == $employee->id) selected @endif value="{{ $employee->id }}">{{ $employee->name }}</option>
                                                 @endforeach
                                             </select>
+                                            @endcan
+                                            @cannot('task-assign', $task)
+                                            {{$task->assignTo->name}}
+                                            @endcannot
                                         </td>
                                         <td>
                                             @if($task->status == 'inactive')
@@ -83,16 +88,17 @@
 @endsection
 
 <script>
-    function updateAssigne(selectElement, taskId) {
-        const employeeId = selectElement.value;
+    function changeAssignee(elem, taskId) {
+        const assignedTo = elem.value;
 
-        if (employeeId) {
+        if (assignedTo) {
             $.ajax({
-                url: '{{ route('tasks.assignedTo', '') }}/' + employeeId,
-                method: 'POST',
+                url: "{{ route('tasks.assignedTo') }}",
+                method: "POST",
                 data: {
-                    '_token': '{{ csrf_token() }}',
-                    'task_id': taskId,
+                    "_token": "{{ csrf_token() }}",
+                    "task_id": taskId,
+                    "user_id": assignedTo
                 },
                 success: function(data) {
                     console.log(data);
