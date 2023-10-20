@@ -27,4 +27,4 @@ User Panel
 [] Upload Files to task
 [] Finish Task and add comments
 [] Discard task
-[] Logout
+[x] Logout

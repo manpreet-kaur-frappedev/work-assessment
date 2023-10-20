@@ -1,4 +1,5 @@
 <!-- Main Sidebar Container -->
+
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
@@ -20,7 +21,7 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="{{ route('dashboard.index') }}" class="nav-link">
+                    <a href="{{ route('dashboard.index') }}" class="nav-link {{ Route::currentRouteName() == 'dashboard.index' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Dashboard
@@ -28,7 +29,7 @@
                     </a>
                 </li>
                 @canany(['viewAny', 'create'], \App\Models\User::class)
-                <li class="nav-item">
+                <li class="nav-item {{in_array(Route::currentRouteName(), ['employee.index', 'employee.create']) ? 'menu-open': '' }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
@@ -39,7 +40,7 @@
                     <ul class="nav nav-treeview">
                         @can('viewAny', \App\Models\User::class)
                         <li class="nav-item">
-                            <a href="{{ route('employee.index') }}" class="nav-link">
+                            <a href="{{ route('employee.index') }}" class="nav-link {{ Route::currentRouteName() == 'employee.index' ? 'active': '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Listing</p>
                             </a>
@@ -47,7 +48,7 @@
                         @endcan
                         @can('create', \App\Models\User::class)
                         <li class="nav-item">
-                            <a href="{{ route('employee.create') }}" class="nav-link">
+                            <a href="{{ route('employee.create') }}" class="nav-link {{ Route::currentRouteName() == 'employee.create' ? 'active': '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Create</p>
                             </a>
@@ -58,7 +59,7 @@
                 @endcanany
 
                 @canany(['viewAny', 'create'], \App\Models\Role::class)
-                <li class="nav-item">
+                <li class="nav-item {{in_array(Route::currentRouteName(), ['roles.index', 'roles.create']) ? 'menu-open': '' }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
@@ -69,7 +70,7 @@
                     <ul class="nav nav-treeview">
                         @can('viewAny', \App\Models\Role::class)
                         <li class="nav-item">
-                            <a href="{{ route('roles.index') }}" class="nav-link">
+                            <a href="{{ route('roles.index') }}" class="nav-link {{ Route::currentRouteName() == 'roles.index' ? 'active': '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Listing</p>
                             </a>
@@ -77,7 +78,7 @@
                         @endcan
                         @can('create', \App\Models\Role::class)
                         <li class="nav-item">
-                            <a href="{{ route('roles.create') }}" class="nav-link">
+                            <a href="{{ route('roles.create') }}" class="nav-link {{ Route::currentRouteName() == 'roles.create' ? 'active': '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Create</p>
                             </a>
@@ -88,7 +89,7 @@
                 @endcanany
 
                 @canany(['viewAny', 'create'], \App\Models\Task::class)
-                <li class="nav-item">
+                <li class="nav-item {{in_array(Route::currentRouteName(), ['task.index', 'task.create']) ? 'menu-open': ''}}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
@@ -100,7 +101,7 @@
                     <ul class="nav nav-treeview">
                         @can('viewAny', \App\Models\Task::class)
                         <li class="nav-item">
-                            <a href="{{ route('task.index') }}" class="nav-link">
+                            <a href="{{ route('task.index') }}" class="nav-link {{ Route::currentRouteName() == 'task.index' ? 'active': '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Listing</p>
                             </a>
@@ -108,7 +109,7 @@
                         @endcan
                         @can('create', \App\Models\Task::class)
                         <li class="nav-item">
-                            <a href="{{ route('task.create') }}" class="nav-link">
+                            <a href="{{ route('task.create') }}" class="nav-link {{ Route::currentRouteName() == 'task.create' ? 'active': '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Create</p>
                             </a>

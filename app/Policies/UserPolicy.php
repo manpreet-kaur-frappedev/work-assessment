@@ -5,7 +5,7 @@ namespace App\Policies;
 use App\Models\Task;
 use App\Models\User;
 
-class EmployeePolicy
+class UserPolicy
 {
     public function before(User $user, string $ability): bool|null
     {

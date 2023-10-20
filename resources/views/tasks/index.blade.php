@@ -22,7 +22,7 @@
                                         <th>Assignee</th>
                                         <th>Assigned To</th>
                                         <th>Status</th>
-                                        <th>Settings</th>
+                                        <th>Action(s)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -36,13 +36,13 @@
                                         <td>{{$task->assignTo ? $task->assignTo->name : ''}}</td>
                                         <td>
                                             @if($task->status == 'inactive')
-                                                <span class="p-2 badge badge-primary">Inactive</span>
+                                                <span class="p-2 badge badge-light">Inactive</span>
                                             @elseif($task->status == 'start')
-                                                <span class="p-2 badge badge-primary">Start</span>
+                                                <span class="p-2 badge badge-success">Started</span>
                                             @elseif($task->status == 'finish')
-                                                <span class="p-2 badge badge-primary">Finish</span>
+                                                <span class="p-2 badge badge-primary">Finished</span>
                                             @elseif($task->status == 'discard')
-                                                <span class="p-2 badge badge-primary">Discard</span>
+                                                <span class="p-2 badge badge-danger">Discarded</span>
                                             @endif
                                         </td>
                                         <td>
@@ -52,10 +52,10 @@
                                             <a href="{{ route('tasks.uploadedFiles', $task->id) }}" class="p-2">
                                                 <i class="fa fa-file"></i>
                                             </a> -->
-                                            <a href="{{ route('task.status', ['id' => $task->id, 'type' => 'start']) }}" class="badge badge-secondary">Start</a>
-                                            <a href="{{ route('task.status', ['id' => $task->id, 'type' => 'finish']) }}" class="badge badge-secondary">Finish</a>
-                                            <a href="{{ route('task.status', ['id' => $task->id, 'type' => 'discard']) }}" class="badge badge-secondary">Discard</a>
-                                            <a href="{{ route('task.settings', $task->id) }}" class="badge badge-secondary">More Settings</a>
+                                            <a href="{{ route('task.status', ['id' => $task->id, 'type' => 'start']) }}" title="Click to Start" class="badge badge-success"><i class="fa fa-play"></i> Start</a>
+                                            <a href="{{ route('task.status', ['id' => $task->id, 'type' => 'finish']) }}" title="Click to Finish" class="badge badge-primary"><i class="fa fa-circle"></i> Finish</a>
+                                            <a href="{{ route('task.status', ['id' => $task->id, 'type' => 'discard']) }}" title="Click to Discard" class="badge badge-danger"><i class="fa fa-times"></i> Discard</a>
+                                            <a href="{{ route('task.settings', $task->id) }}" class="badge badge-dark" title="Click to view More Settings"><i class="fa fa-info-circle"></i> More Settings</a>
                                         </td>
                                     </tr>
                                     @endforeach

@@ -15,7 +15,7 @@
                             <div class="position-relative form-group">
                                 <label for="exampleEmail" class="">Name</label>
                                 <input name="name" id="emp_name" placeholder="Enter Your Name" type="text"
-                                    class="form-control">
+                                    class="form-control" value="{{ old('name')}} ">
 	                            @if ($errors->has('name'))
 	                                <span class="text-danger text-left">{{ $errors->first('name') }}</span>
 	                            @endif
@@ -23,7 +23,7 @@
                             <div class="position-relative form-group">
                                 <label for="exampleEmail" class="">Email</label>
                                 <input name="email" id="emp_email" placeholder="Enter Your Email" type="email"
-                                    class="form-control">
+                                    class="form-control" value="{{ old('email') }}">
 	                            @if ($errors->has('email'))
 	                                <span class="text-danger text-left">{{ $errors->first('email') }}</span>
 	                            @endif

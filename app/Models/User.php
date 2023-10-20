@@ -67,4 +67,9 @@ class User extends Authenticatable
     {
         return $this->type == self::ADMIN;
     }
+
+    public function isEmployee()
+    {
+        return $this->type == self::EMPLOYEE;
+    }
 }

@@ -10,6 +10,7 @@ use App\Models\Notification;
 use App\Models\TaskComment;
 use App\Http\Requests\TaskCreateRequest;
 use Auth;
+use Illuminate\Support\Facades\Gate;
 
 class TaskController extends Controller
 {
@@ -20,9 +21,13 @@ class TaskController extends Controller
 
     public function index()
     {
-        $tasks = Task::orderBy('id', 'desc')->get();
+        $tasks = Task::orderBy('id', 'desc');
+        
+        if(Auth::user()->isEmployee()) {
+            $tasks->whereAssignTo(Auth::user()->id);
+        }
 
-        return view('tasks/index', ['tasks' => $tasks]);
+        return view('tasks/index', ['tasks' => $tasks->get()]);
     }
 
     /**
@@ -65,13 +70,16 @@ class TaskController extends Controller
 
     public function status($id, $type)
     {
-        // $this->authorize('update', )
         $task = Task::find($id);
+
+        if (!Gate::allows('task-status-change', $task)) {
+            abort(403);
+        }
 
         $task->status = $type;
         $task->save();
         
-        return redirect('/')->with('success', "Employee updated successfully!");
+        return back()->with('success', "Status changed successfully!");
     }
 
     public function settings($id)

@@ -27,6 +27,9 @@ class PermissionSeeder extends Seeder
             ['name' => 'Task Delete', 'slug' => 'task-delete'],
             ['name' => 'Task Edit', 'slug' => 'task-edit'],
             ['name' => 'Task Assign', 'slug' => 'task-assign'],
+            ['name' => 'Task Status Change', 'slug' => 'task-status-change'],
+            ['name' => 'Task Comments', 'slug' => 'task-comments'],
+            ['name' => 'Task Uploads', 'slug' => 'task-uploads'],
         ];
 
         foreach ($permissions as $permission) {
