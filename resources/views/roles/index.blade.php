@@ -11,7 +11,7 @@
                 <h2>Roles</h2>
             </div>
             <div class="col-md-6">
-                <a href="{{ route('roles.create') }}" class="btn btn-primary btn-lg float-md-right" role="button" aria-pressed="true">Create New Role</a>
+                
             </div>
         </div>
         <div class="row d-flex justify-content-center">

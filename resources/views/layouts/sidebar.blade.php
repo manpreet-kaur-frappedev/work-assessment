@@ -77,7 +77,7 @@
                         @endcan
                         @can('create', \App\Models\Role::class)
                         <li class="nav-item">
-                            <a href="{{ route('roles.index') }}" class="nav-link">
+                            <a href="{{ route('roles.create') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Create</p>
                             </a>
