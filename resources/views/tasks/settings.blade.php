@@ -32,7 +32,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <h4 class="mt-3 mb-3 text-center">Previous Comments</h4>
-                        @foreach($task->comments($task->id) as $key => $comment)
+                        @foreach($task->comments as $key => $comment)
                         <div class="main-card mb-3 card">
                             <div class="card-body">
                                 <div class="row">
@@ -53,7 +53,7 @@
                     </div>
                     <div class="col-sm-6">
                         <h4 class="mt-3 mb-3 text-center">Uploaded Files</h4>
-                        @foreach($task->files($task->id) as $key => $files)
+                        @foreach($task->files as $key => $files)
                             <div class="main-card mb-3 card">
                                 <div class="card-body">
                                     <div class="row">

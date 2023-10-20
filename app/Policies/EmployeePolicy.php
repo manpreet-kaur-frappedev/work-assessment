@@ -31,12 +31,6 @@ class EmployeePolicy
     {
         $permissions = $user->getPermissions();
         return $permissions->where('slug', 'employee-listing')->count() > 0;
-        
-        // Assigned to Themselves
-        // 
-        // return $user->id === $task->assign_to
-        //         ? Response::allow()
-        //         : Response::denyWithStatus(404);
     }
 
     /**

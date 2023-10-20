@@ -46,12 +46,16 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ route('tasks.comments', $task->id) }}" class="p-2">
+                                            <!-- <a href="{{ route('tasks.comments', $task->id) }}" class="p-2">
                                                 <i class="fa fa-comment"></i>
                                             </a>
                                             <a href="{{ route('tasks.uploadedFiles', $task->id) }}" class="p-2">
                                                 <i class="fa fa-file"></i>
-                                            </a>
+                                            </a> -->
+                                            <a href="{{ route('task.status', ['id' => $task->id, 'type' => 'start']) }}" class="badge badge-secondary">Start</a>
+                                            <a href="{{ route('task.status', ['id' => $task->id, 'type' => 'finish']) }}" class="badge badge-secondary">Finish</a>
+                                            <a href="{{ route('task.status', ['id' => $task->id, 'type' => 'discard']) }}" class="badge badge-secondary">Discard</a>
+                                            <a href="{{ route('task.settings', $task->id) }}" class="badge badge-secondary">More Settings</a>
                                         </td>
                                     </tr>
                                     @endforeach

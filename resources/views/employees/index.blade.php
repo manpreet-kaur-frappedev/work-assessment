@@ -36,9 +36,9 @@
                                             @endforeach
                                         </td>
                                         <td>
-                                            <a href="{{ route('employee.edit', $employee->id) }}"><i class="fa fa-edit"></i></a>
-                                            <a href="#" onclick="deleteEmployee({{ $employee->id }})"><i class="fas fa-trash-alt"></i></a>
-                                            <a href="#" onclick="createNotificationForEmployee({{ $employee->id }})"><i class="fa fa-bell"></i></a>
+                                            <a class="p-2" href="{{ route('employee.edit', $employee->id) }}"><i class="fa fa-edit"></i></a>
+                                            <a class="p-2" href="#" onclick="deleteEmployee({{ $employee->id }})"><i class="fas fa-trash-alt"></i></a>
+                                            <a class="p-2" href="#" onclick="createNotificationForEmployee({{ $employee->id }})"><i class="fa fa-bell"></i></a>
                                         </td>
                                     </tr>
                                     @endforeach

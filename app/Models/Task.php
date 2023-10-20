@@ -34,13 +34,23 @@ class Task extends Model
         return $this->belongsTo(User::class, 'assignee', 'id');
     }
 
-    public function comments($taskId)
+    public function comments()
     {
-        return $this->hasMany(TaskComment::class, 'user_id', 'assign_to')->where('task_id', $taskId)->get();
+        return $this->hasMany(TaskComment::class, 'task_id', 'id');
     }
 
-    public function files($taskId)
+    public function files()
     {
-        return $this->hasMany(UploadedFile::class, 'user_id', 'assign_to')->where('task_id', $taskId)->get();
+        return $this->hasMany(UploadedFile::class, 'task_id', 'id');
     }
+
+    // public function comments($taskId)
+    // {
+    //     return $this->hasMany(TaskComment::class, 'user_id', 'assign_to')->where('task_id', $taskId)->get();
+    // }
+
+    // public function files($taskId)
+    // {
+    //     return $this->hasMany(UploadedFile::class, 'user_id', 'assign_to')->where('task_id', $taskId)->get();
+    // }
 }

@@ -30,7 +30,8 @@ Route::post('createUser', [UserController::class, 'createUser'])->name('user.cre
 Route::post('loginUser', [UserController::class, 'loginUser'])->name('user.loginUser');
 
 Route::middleware(['auth'])->group(function () {
-	Route::get('/', [UserController::class, 'index'])->name('user.index');
+	Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+	Route::get('/dashboard/index', [DashboardController::class, 'index'])->name('dashboard.index');
 	Route::resource('employee', EmployeeController::class);
 	Route::get('/tasks', [TaskController::class, 'index'])->name('task.index');
 	Route::get('/tasks/create', [TaskController::class, 'create'])->name('task.create');
@@ -39,7 +40,6 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/tasks/status/{id}/{type}', [TaskController::class, 'status'])->name('task.status');
 	Route::post('/tasks/saveSettings/{id}', [TaskController::class, 'saveSettings'])->name('task.saveSettings');
 	Route::get('/notifications/clearAll', [NotificationController::class, 'clearAll'])->name('notification.clearAll');
-	Route::get('/dashboard/index', [DashboardController::class, 'index'])->name('dashboard.index');
 	Route::resource('roles', RolesController::class);
 	Route::get('/tasks/comments/{id}', [TaskController::class, 'comments'])->name('tasks.comments');
 	Route::get('/tasks/uploadedFiles/{id}', [TaskController::class, 'uploadedFiles'])->name('tasks.uploadedFiles');
