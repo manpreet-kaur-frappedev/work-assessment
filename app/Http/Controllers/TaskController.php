@@ -70,7 +70,7 @@ class TaskController extends Controller
 
     public function status($id, $type)
     {
-        $task = Task::find($id);
+        $task = Task::findOrFail($id);
 
         if (!Gate::allows('task-status-change', $task)) {
             abort(403);
@@ -84,11 +84,12 @@ class TaskController extends Controller
 
     public function settings($id)
     {
-        $task = Task::find($id);
+        $task = Task::findOrFail($id);
 
         return view('tasks/settings', ['task' => $task]);
     }
 
+    // Handles uploads & comments
     public function saveSettings(Request $request, $id)
     {
         $task = Task::find($id);
@@ -120,37 +121,54 @@ class TaskController extends Controller
         return back();
     }
 
+    // Get Comments
     public function comments($taskId)
     {
-        $task = Task::find($taskId);
+        $task = Task::findOrFail($taskId);
 
-        $comments = TaskComment::where('task_id', $taskId)->get();
+        $this->authorize('view', $task);
 
-        return view('tasks.comments', ['task' => $task, 'comments' => $comments]);
+        return view('tasks.comments', ['task' => $task, 'comments' => $task->comments]);
     }
 
     public function uploadedFiles($taskId)
     {
-        $task = Task::find($taskId);
+        $task = Task::findOrFail($taskId);
 
-        $files = UploadedFile::where('task_id', $taskId)->get();
+        $this->authorize('view', $task);
 
-        return view('tasks.files', ['task' => $task, 'files' => $files]);
+        return view('tasks.files', ['task' => $task, 'files' => $task->files]);
     }
 
     public function addComment(Request $request, $taskId)
     {
-        $requestData['comment'] = $request->comment;
-        $requestData['task_id'] = $taskId;
-        $requestData['user_id'] = Auth::user()->id;
+        $task = Task::findOrFail($taskId);
 
-        $task = TaskComment::create($requestData);
+        $this->validate($request, [
+            'comment' => 'required'
+        ]);
+
+        if (!Gate::allows('task-comments', $task)) {
+            abort(403);
+        }
+
+        $task = TaskComment::create([
+            'comment' => $request->comment,
+            'task_id' => $task->id,
+            'user_id' => Auth::user()->id
+        ]);
 
         return back();
     }
 
     public function uploadFile(Request $request, $taskId)
     {
+        $task = Task::findOrFail($taskId);
+
+        if (!Gate::allows('task-uploads', $task)) {
+            abort(403);
+        }
+
         // Store the uploaded file
         $fileName = time().'.'.$request->document->extension();
         $path = public_path('files/');

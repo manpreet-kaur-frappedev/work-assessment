@@ -55,7 +55,8 @@
                                             <a href="{{ route('task.status', ['id' => $task->id, 'type' => 'start']) }}" title="Click to Start" class="badge badge-success"><i class="fa fa-play"></i> Start</a>
                                             <a href="{{ route('task.status', ['id' => $task->id, 'type' => 'finish']) }}" title="Click to Finish" class="badge badge-primary"><i class="fa fa-circle"></i> Finish</a>
                                             <a href="{{ route('task.status', ['id' => $task->id, 'type' => 'discard']) }}" title="Click to Discard" class="badge badge-danger"><i class="fa fa-times"></i> Discard</a>
-                                            <a href="{{ route('task.settings', $task->id) }}" class="badge badge-dark" title="Click to view More Settings"><i class="fa fa-info-circle"></i> More Settings</a>
+                                            <a href="{{ route('tasks.comments', $task->id) }}" class="badge badge-dark" title="Click to view Comments"><i class="fa fa-comments"></i> Comments</a>
+                                            <a href="{{ route('tasks.uploadedFiles', $task->id) }}" class="badge badge-dark" title="Click to view Uploads"><i class="fa fa-upload"></i> Uploads</a>
                                         </td>
                                     </tr>
                                     @endforeach

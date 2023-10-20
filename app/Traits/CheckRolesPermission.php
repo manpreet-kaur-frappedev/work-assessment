@@ -3,7 +3,6 @@
 namespace App\Traits;
 
 use App\Models\Role;
-use App\Models\Permission;
 
 trait CheckRolesPermission
 {
@@ -12,6 +11,7 @@ trait CheckRolesPermission
 		return $this->belongsToMany(Role::class, 'users_roles');
 	}
 
+	// Get the permissions from roles assigned to user
 	public function getPermissions()
 	{
 		$permissions = [];
@@ -22,6 +22,5 @@ trait CheckRolesPermission
 		}
 
 		return collect($permissions);
-		// return $this->hasManyThrough(Permission::class, Role::class);
 	}
 }

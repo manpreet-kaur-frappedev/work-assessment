@@ -18,13 +18,13 @@ AdminLTE theme for Admin
 
 User Panel
 [x] Register / Login employee based on Role
-[] Check Notifications
-[] Check To do List task assigned to Him/Her.
-[] Can have multiple tasks at a time
-[] Can Assign task to other person also based on Role
-[] Check and Start Task
+[x] Check Notifications
+[x] Check To do List task assigned to Him/Her.
+[x] Can have multiple tasks at a time
+[x] Can Assign task to other person also based on Role
+[x] Check and Start Task
 [] Add Comments to task
 [] Upload Files to task
 [] Finish Task and add comments
-[] Discard task
+[x] Discard task
 [x] Logout

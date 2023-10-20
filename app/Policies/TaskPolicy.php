@@ -11,18 +11,19 @@ class TaskPolicy
 {
     public function before(User $user, string $ability): bool|null
     {
+        // If User is Admin; don't run any checks; just allow.
         if($user->isAdmin()) {
             return true;
         }
     
         return null;
     }
+
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        
         $permissions = $user->getPermissions();
         return $permissions->where('slug', 'task-listing')->count() > 0;
     }
@@ -33,13 +34,9 @@ class TaskPolicy
     public function view(User $user, Task $task): bool
     {
         $permissions = $user->getPermissions();
-        return $permissions->where('slug', 'task-listing')->count() > 0;
-        
-        // Assigned to Themselves
-        // 
-        // return $user->id === $task->assign_to
-        //         ? Response::allow()
-        //         : Response::denyWithStatus(404);
+
+        // Viewable if the User has task-listing permission & User is the one assigned to the task.
+        return ($user->id === $task->assign_to) && ($permissions->where('slug', 'task-listing')->count() > 0);
     }
 
     /**
