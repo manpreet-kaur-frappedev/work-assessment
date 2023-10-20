@@ -129,4 +129,31 @@ class TaskController extends Controller
 
         return view('tasks.files', ['task' => $task, 'files' => $files]);
     }
+
+    public function addComment(Request $request, $taskId)
+    {
+        $requestData['comment'] = $request->comment;
+        $requestData['task_id'] = $taskId;
+        $requestData['user_id'] = Auth::user()->id;
+
+        $task = TaskComment::create($requestData);
+
+        return back();
+    }
+
+    public function uploadFile(Request $request, $taskId)
+    {
+        // Store the uploaded file
+        $fileName = time().'.'.$request->document->extension();
+        $path = public_path('files/');
+        $request->document->move($path, $fileName);
+        $data = [];
+        $data['task_id'] = $taskId;
+        $data['user_id'] = Auth::user()->id;
+        $data['filename'] = $fileName;
+
+        $uploadedFiles = UploadedFile::create($data);
+
+        return back();
+    }
 }

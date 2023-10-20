@@ -24,6 +24,17 @@
                         @endforeach
                     </div>
                 </div>
+                <form method="post" action="{{ route('tasks.addComment', $task->id) }}">
+                    @csrf
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="comment" placeholder="Add Comment">
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-block bg-primary">Comment</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
 	</div>

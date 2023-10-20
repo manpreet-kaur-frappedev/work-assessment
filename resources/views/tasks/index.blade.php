@@ -46,8 +46,12 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ route('tasks.comments', $task->id) }}" class="btn bg-success">Check Comments</a>
-                                            <a href="{{ route('tasks.uploadedFiles', $task->id) }}" class="btn bg-info">Upload Files</a>
+                                            <a href="{{ route('tasks.comments', $task->id) }}" class="p-2">
+                                                <i class="fa fa-comment"></i>
+                                            </a>
+                                            <a href="{{ route('tasks.uploadedFiles', $task->id) }}" class="p-2">
+                                                <i class="fa fa-file"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                     @endforeach

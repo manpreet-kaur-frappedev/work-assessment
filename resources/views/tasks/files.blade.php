@@ -28,6 +28,17 @@
                         @endforeach
                     </div>
                 </div>
+                <form method="post" action="{{ route('tasks.uploadFile', $task->id) }}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <input type="file" class="form-control" name="document">
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-block bg-primary">Upload</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
 	</div>
